@@ -30,6 +30,7 @@
             app:boxStrokeColor="#FFEB3B">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiet_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#00FFFFFF"
@@ -45,6 +46,7 @@
             app:boxStrokeColor="#FFEB3B">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiet_passwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#00FFFFFF"
@@ -65,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/bt_login"
         android:layout_width="249dp"
         android:layout_height="47dp"
         android:layout_marginEnd="80dp"
@@ -88,10 +90,10 @@
         android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_login" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/bt_llamanos"
         android:layout_width="249dp"
         android:layout_height="47dp"
         android:layout_marginEnd="80dp"
