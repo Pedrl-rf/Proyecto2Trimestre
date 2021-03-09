@@ -31,24 +31,24 @@ public class MainActivity extends AppCompatActivity {
         tiet_passwd = findViewById(R.id.tiet_passwd);
         tiet_usario = findViewById(R.id.tiet_login);
 
-        bt_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent next = new Intent(MainActivity.this, menu.class);
-                if (tiet_passwd.toString().isEmpty()) {
-                    Toast toast = Toast.makeText(MainActivity.this, "error", Toast.LENGTH_LONG);
-                }
-                startActivity(next);
-            }
-        });
+//        bt_login.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent next = new Intent(MainActivity.this, menu.class);
+//                if (tiet_passwd.toString().isEmpty()) {
+//                    Toast toast = Toast.makeText(MainActivity.this, "error", Toast.LENGTH_LONG);
+//                    startActivity(next);
+//                }
+//            }
+//        });
         bt_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent_call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:633661477"));
                 if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+                    startActivity(intent_call);
                     return;
                 }
-                startActivity(intent_call);
             }
         });
     }
