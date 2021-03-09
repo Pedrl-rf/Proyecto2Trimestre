@@ -35,14 +35,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent next = new Intent(MainActivity.this, menu.class);
-                if (tiet_passwd.toString().isEmpty()){
-                    Toast toast = Toast.makeText(MainActivity.this,"error",Toast.LENGTH_SHORT);
-                }else{
-                    startActivity(next);
+                if (tiet_passwd.toString().isEmpty()) {
+                    Toast toast = Toast.makeText(MainActivity.this, "error", Toast.LENGTH_LONG);
                 }
+                startActivity(next);
             }
         });
-
         bt_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
