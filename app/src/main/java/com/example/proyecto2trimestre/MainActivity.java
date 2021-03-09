@@ -1,8 +1,12 @@
 package com.example.proyecto2trimestre;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +40,17 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     startActivity(next);
                 }
+            }
+        });
+
+        bt_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:633661477"));
+                if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+                    return;
+                }
+                startActivity(intent_call);
             }
         });
     }
