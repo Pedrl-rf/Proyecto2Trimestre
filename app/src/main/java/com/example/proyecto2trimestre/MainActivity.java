@@ -44,11 +44,8 @@ public class MainActivity extends AppCompatActivity {
         bt_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:633661477"));
-                if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
-                    startActivity(intent_call);
-                    return;
-                }
+                Intent intent_call = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:633661477"));
+                startActivity(intent_call);
             }
         });
     }
