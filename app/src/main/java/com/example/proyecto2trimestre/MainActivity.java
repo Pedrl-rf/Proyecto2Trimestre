@@ -1,51 +1,60 @@
 package com.example.proyecto2trimestre;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.view.MenuItem;
 
-import com.google.android.material.textfield.TextInputEditText;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.proyecto2trimestre.fragments.HomeFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button bt_login;
-    Button bt_call;
-    TextInputEditText tiet_usario;
-    TextInputEditText tiet_passwd;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_main);
 
-        bt_login = findViewById(R.id.bt_login);
-        bt_call = findViewById(R.id.bt_llamanos);
-        tiet_passwd = findViewById(R.id.tiet_passwd);
-        tiet_usario = findViewById(R.id.tiet_login);
+        BottomNavigationView mBottomNavigation = findViewById(R.id.bottomMenu);
 
-//        bt_login.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent next = new Intent(MainActivity.this, menu.class);
-//                if (tiet_passwd.toString().isEmpty()) {
-//                    Toast toast = Toast.makeText(MainActivity.this, "error", Toast.LENGTH_LONG);
-//                    startActivity(next);
-//                }
-//            }
-//        });
-        bt_call.setOnClickListener(new View.OnClickListener() {
+        mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent_call = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:633661477"));
-                startActivity(intent_call);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int id = item.getItemId();
+                navigateToFragment(id);
+                return true;
+            }
+
+            private void navigateToFragment(int itemId) {
+
+                Fragment fragment;
+                //String title = getString(R.string.title_home);
+                switch (itemId) {
+                    default:
+                        fragment = new HomeFragment();
+                        break;
+                   /* case R.id.blog:
+                        title = getString(R.string.title_main);
+                        fragment = new MainFragment();
+                        break;
+                    case R.id.gallery:
+                        title = getString(R.string.title_notifications);
+                        fragment = new NotifFragment();
+                        break;*/
+                }
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction transaction = fm.beginTransaction();
+                //transaction.replace(R.id.nav_host_fragment, fragment);
+                transaction.commit();
+                //setTitle(title);
             }
         });
     }
