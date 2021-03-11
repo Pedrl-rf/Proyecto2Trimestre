@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.proyecto2trimestre.fragments.BlankFragment;
 import com.example.proyecto2trimestre.fragments.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
 
 
     @Override
@@ -32,30 +32,33 @@ public class MainActivity extends AppCompatActivity {
                 navigateToFragment(id);
                 return true;
             }
-
-            private void navigateToFragment(int itemId) {
-
-                Fragment fragment;
-                //String title = getString(R.string.title_home);
-                switch (itemId) {
-                    default:
-                        fragment = new HomeFragment();
-                        break;
-                   /* case R.id.blog:
-                        title = getString(R.string.title_main);
-                        fragment = new MainFragment();
-                        break;
-                    case R.id.gallery:
-                        title = getString(R.string.title_notifications);
-                        fragment = new NotifFragment();
-                        break;*/
-                }
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction transaction = fm.beginTransaction();
-                //transaction.replace(R.id.nav_host_fragment, fragment);
-                transaction.commit();
-                //setTitle(title);
-            }
         });
+    }
+
+    private void navigateToFragment(int itemId) {
+
+        Fragment fragment;
+        //String title = getString(R.string.title_home);
+        switch (itemId) {
+            default:
+                fragment = new HomeFragment();
+                break;
+            case R.id.blog:
+                fragment = new HomeFragment();
+                break;
+            case R.id.contact:
+                //title = getString(R.string.title_main);
+                fragment = new BlankFragment();
+                break;
+            case R.id.gallery:
+                        //title = getString(R.string.title_notifications);
+                fragment = new BlankFragment();
+                break;
+        }
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.commit();
+        //setTitle(title);
     }
 }
