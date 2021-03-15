@@ -38,13 +38,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent next = new Intent(MainActivity.this, Home.class);
-                    if(tiet_usario.getText().toString().isEmpty() || tiet_passwd.getText().toString().isEmpty())
+                    /*if(tiet_usario.getText().toString().isEmpty() || tiet_passwd.getText().toString().isEmpty())
                     {
                         tiet_usario.setError("Introduce un usuario");
                         tiet_passwd.setError("Introduce una contraseña");
-                    }if (tiet_usario.getText().toString() != "alumno" || tiet_usario.getText().toString() != "invitado" || tiet_usario.getText().toString() != "profesor")
+                    }if (tiet_usario.getText().toString() = "alumno" && tiet_passwd = "alumno1234")
                     {
-                        tiet_usario.setError("No has introducido un usuario correcto");
+                        startActivity(next);
+
                     }if (tiet_passwd.getText().toString() != "alumno1234" || tiet_passwd.getText().toString() != "alumno1234" || tiet_passwd.getText().toString() != "profesor1234")
                     {
                         tiet_passwd.setError("No has introducido una contraseña valida");
@@ -52,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
                     {
                         guardarPreferencias();
                         startActivity(next);
-                    }
+                    }*/
+                startActivity(next);
             }
         });
         bt_call.setOnClickListener(new View.OnClickListener() {

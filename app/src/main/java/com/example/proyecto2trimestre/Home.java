@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.proyecto2trimestre.fragments.BlankFragment;
+import com.example.proyecto2trimestre.fragments.BlogFragment;
+import com.example.proyecto2trimestre.fragments.ContactFragment;
+import com.example.proyecto2trimestre.fragments.GalleryFragment;
 import com.example.proyecto2trimestre.fragments.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -42,15 +44,15 @@ public class Home extends AppCompatActivity {
                 fragment = new HomeFragment();
                 break;
             case R.id.blog:
-                fragment = new HomeFragment();
+                fragment = new BlogFragment();
                 break;
             case R.id.contact:
                 //title = getString(R.string.title_main);
-                fragment = new BlankFragment();
+                fragment = new ContactFragment();
                 break;
             case R.id.gallery:
                         //title = getString(R.string.title_notifications);
-                fragment = new BlankFragment();
+                fragment = new GalleryFragment();
                 break;
         }
         FragmentManager fm = getSupportFragmentManager();
