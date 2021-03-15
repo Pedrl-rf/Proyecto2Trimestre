@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
         nameEditor.commit();
         passwdEditor.commit();
-
     }
 
     public void cargarPreferencias(){
