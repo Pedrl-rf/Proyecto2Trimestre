@@ -255,7 +255,10 @@
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:gravity="center"
+                android:text="Contáctanos"
+                android:textColor="#FBFBFB"
+                android:textSize="25dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -267,10 +270,12 @@
                 app:suffixTextColor="#00E2FF">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_nombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#00FFFFFF"
-                    android:hint="Nombre" />
+                    android:hint="Nombre"
+                    android:textColor="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -281,10 +286,13 @@
                 app:suffixTextColor="#00E2FF">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_correo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#00FFFFFF"
-                    android:hint="Correo Electronico" />
+                    android:hint="Correo Electronico"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -295,10 +303,12 @@
                 app:suffixTextColor="#00E2FF">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_telefono"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#00FFFFFF"
-                    android:hint="Telefono" />
+                    android:hint="Telefono"
+                    android:textColor="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -309,11 +319,20 @@
                 app:suffixTextColor="#00E2FF">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_mensaje"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#00FFFFFF"
-                    android:hint="Mensaje" />
+                    android:hint="Mensaje"
+                    android:textColor="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/bt_enviar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_horizontal"
+                android:text="enviar" />
         </LinearLayout>
     </LinearLayout>
 

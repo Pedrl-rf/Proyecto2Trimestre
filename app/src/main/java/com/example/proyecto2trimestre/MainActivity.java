@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+
+
+
         bt_login = findViewById(R.id.bt_login);
         bt_call = findViewById(R.id.bt_llamanos);
         tiet_passwd = findViewById(R.id.tiet_passwd);
@@ -34,27 +38,51 @@ public class MainActivity extends AppCompatActivity {
         tv_rememberPasswd = findViewById(R.id.rememberPasswd);
         tv_helpText = findViewById(R.id.helpText);
 
+        String usaurio = tiet_usario.getText().toString();
+        String passwd = tiet_passwd.getText().toString();
+
+
+        SharedPreferences namePreferences = getSharedPreferences
+                ("usuario",MODE_PRIVATE);
+        SharedPreferences passwdPreferences = getSharedPreferences("passwd,",MODE_PRIVATE);
+        SharedPreferences.Editor nameEditor = namePreferences.edit();
+        SharedPreferences.Editor passwdEditor = passwdPreferences.edit();
+        nameEditor.putString("usuario",usaurio);
+        passwdEditor.putString("passwd",passwd);
+        nameEditor.apply();
+        passwdEditor.apply();
+
+
+
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent next = new Intent(MainActivity.this, Home.class);
-                    /*if(tiet_usario.getText().toString().isEmpty() || tiet_passwd.getText().toString().isEmpty())
-                    {
+                    if(tiet_usario.getText().toString().isEmpty() || tiet_passwd.getText().toString().isEmpty()) {
                         tiet_usario.setError("Introduce un usuario");
                         tiet_passwd.setError("Introduce una contraseña");
-                    }if (tiet_usario.getText().toString() = "alumno" && tiet_passwd = "alumno1234")
-                    {
+                    }
+                    if(tiet_usario.getText().toString().equals("alumno") && tiet_passwd.getText().toString().equals("alumno1234")){
                         startActivity(next);
-
-                    }if (tiet_passwd.getText().toString() != "alumno1234" || tiet_passwd.getText().toString() != "alumno1234" || tiet_passwd.getText().toString() != "profesor1234")
-                    {
-                        tiet_passwd.setError("No has introducido una contraseña valida");
-                    }else
-                    {
                         guardarPreferencias();
-                        startActivity(next);
-                    }*/
-                startActivity(next);
+                    }else{
+                        tiet_usario.setError("Has introducido un usuario equivocado");
+                        tiet_passwd.setError("Has introducido una contraseña erronea");
+                    }
+                if(tiet_usario.getText().toString().equals("profesor") && tiet_passwd.getText().toString().equals("profesor1234")){
+                    startActivity(next);
+                    guardarPreferencias();
+                }else{
+                    tiet_usario.setError("Has introducido un usuario equivocado");
+                    tiet_passwd.setError("Has introducido una contraseña erronea");
+                }
+                if(tiet_usario.getText().toString().equals("invitado") && tiet_passwd.getText().toString().equals("estech1234")){
+                    startActivity(next);
+                    guardarPreferencias();
+                }else{
+                    tiet_usario.setError("Has introducido un usuario equivocado");
+                    tiet_passwd.setError("Has introducido una contraseña erronea");
+                }
             }
         });
         bt_call.setOnClickListener(new View.OnClickListener() {
@@ -101,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
         tiet_usario.setText(usaurio);
         tiet_passwd.setText(passwd);
 
-        nameEditor.commit();
-        passwdEditor.commit();
+        nameEditor.apply();
+        passwdEditor.apply();
     }
 
     public void cargarPreferencias(){
