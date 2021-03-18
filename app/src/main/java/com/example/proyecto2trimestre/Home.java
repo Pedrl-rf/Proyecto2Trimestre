@@ -2,6 +2,7 @@ package com.example.proyecto2trimestre;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -20,7 +21,8 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
     BottomNavigationView mBottomNavigation = findViewById(R.id.bottomMenu);
@@ -33,6 +35,8 @@ public class Home extends AppCompatActivity {
                 return true;
             }
         });
+
+        mBottomNavigation.setSelectedItemId(R.id.menu_home);
     }
 
     private void navigateToFragment(int itemId) {
@@ -42,16 +46,20 @@ public class Home extends AppCompatActivity {
         switch (itemId) {
             default:
                 fragment = new HomeFragment();
+                getSupportActionBar().setTitle("Home");
                 break;
             case R.id.blog:
                 fragment = new BlogFragment();
+                getSupportActionBar().setTitle("Blog");
                 break;
             case R.id.contact:
                 //title = getString(R.string.title_main);
+                getSupportActionBar().setTitle("Contacto");
                 fragment = new ContactFragment();
                 break;
             case R.id.gallery:
                         //title = getString(R.string.title_notifications);
+                getSupportActionBar().setTitle("Galeria");
                 fragment = new GalleryFragment();
                 break;
         }

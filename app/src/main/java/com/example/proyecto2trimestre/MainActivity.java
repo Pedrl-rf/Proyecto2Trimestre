@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.login);
 
 
-
-
         bt_login = findViewById(R.id.bt_login);
         bt_call = findViewById(R.id.bt_llamanos);
         tiet_passwd = findViewById(R.id.tiet_passwd);
@@ -43,45 +43,33 @@ public class MainActivity extends AppCompatActivity {
 
 
         SharedPreferences namePreferences = getSharedPreferences
-                ("usuario",MODE_PRIVATE);
-        SharedPreferences passwdPreferences = getSharedPreferences("passwd,",MODE_PRIVATE);
+                ("usuario", MODE_PRIVATE);
+        SharedPreferences passwdPreferences = getSharedPreferences("passwd,", MODE_PRIVATE);
         SharedPreferences.Editor nameEditor = namePreferences.edit();
         SharedPreferences.Editor passwdEditor = passwdPreferences.edit();
-        nameEditor.putString("usuario",usaurio);
-        passwdEditor.putString("passwd",passwd);
+        nameEditor.putString("usuario", usaurio);
+        passwdEditor.putString("passwd", passwd);
         nameEditor.apply();
         passwdEditor.apply();
-
 
 
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent next = new Intent(MainActivity.this, Home.class);
-                    if(tiet_usario.getText().toString().isEmpty() || tiet_passwd.getText().toString().isEmpty()) {
-                        tiet_usario.setError("Introduce un usuario");
-                        tiet_passwd.setError("Introduce una contraseña");
-                    }
-                    if(tiet_usario.getText().toString().equals("alumno") && tiet_passwd.getText().toString().equals("alumno1234")){
-                        startActivity(next);
+                if (tiet_usario.getText().toString().isEmpty() || tiet_passwd.getText().toString().isEmpty()) {
+                    tiet_usario.setError("Introduce un usuario");
+                    tiet_passwd.setError("Introduce una contraseña");
+                } else {
+                    if ((tiet_usario.getText().toString().equals("alumno") && tiet_passwd.getText().toString().equals("alumno1234")) || (tiet_usario.getText().toString().equals("profesor") && tiet_passwd.getText().toString().equals("profesor1234"))
+                            || (tiet_usario.getText().toString().equals("invitado") && tiet_passwd.getText().toString().equals("estech1234"))) {
+
                         guardarPreferencias();
-                    }else{
+                        startActivity(next);
+                    } else {
                         tiet_usario.setError("Has introducido un usuario equivocado");
                         tiet_passwd.setError("Has introducido una contraseña erronea");
                     }
-                if(tiet_usario.getText().toString().equals("profesor") && tiet_passwd.getText().toString().equals("profesor1234")){
-                    startActivity(next);
-                    guardarPreferencias();
-                }else{
-                    tiet_usario.setError("Has introducido un usuario equivocado");
-                    tiet_passwd.setError("Has introducido una contraseña erronea");
-                }
-                if(tiet_usario.getText().toString().equals("invitado") && tiet_passwd.getText().toString().equals("estech1234")){
-                    startActivity(next);
-                    guardarPreferencias();
-                }else{
-                    tiet_usario.setError("Has introducido un usuario equivocado");
-                    tiet_passwd.setError("Has introducido una contraseña erronea");
                 }
             }
         });
@@ -98,11 +86,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String preferencias;
                 //preferencias = getSharedPreferences().getString(,"");
-                Toast.makeText(getApplication(),"pulsado",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), "pulsado", Toast.LENGTH_SHORT).show();
                 final CharSequence[] opciones = {"salir"};
                 final AlertDialog.Builder alertOpciones = new AlertDialog.Builder(MainActivity.this);
                 alertOpciones.setTitle("Contraseña guardadas");
-               // alertOpciones.setMessage("cargar preferencias");
+                // alertOpciones.setMessage("cargar preferencias");
                 alertOpciones.setItems(opciones, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -114,17 +102,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void guardarPreferencias(){
+    public void guardarPreferencias() {
         SharedPreferences namePreferences = getSharedPreferences
-                ("usuario",MODE_PRIVATE);
-        SharedPreferences passwdPreferences = getSharedPreferences("passwd,",MODE_PRIVATE);
+                ("usuario", MODE_PRIVATE);
+        SharedPreferences passwdPreferences = getSharedPreferences("passwd,", MODE_PRIVATE);
         String usaurio = tiet_usario.getText().toString();
         String passwd = tiet_passwd.getText().toString();
 
         SharedPreferences.Editor nameEditor = namePreferences.edit();
         SharedPreferences.Editor passwdEditor = passwdPreferences.edit();
-        nameEditor.putString("usuario",usaurio);
-        passwdEditor.putString("passwd",passwd);
+        nameEditor.putString("usuario", usaurio);
+        passwdEditor.putString("passwd", passwd);
 
         tiet_usario.setText(usaurio);
         tiet_passwd.setText(passwd);
@@ -133,13 +121,13 @@ public class MainActivity extends AppCompatActivity {
         passwdEditor.apply();
     }
 
-    public void cargarPreferencias(){
+    public void cargarPreferencias() {
         SharedPreferences namePreferences = getSharedPreferences
-                ("usuario",MODE_PRIVATE);
-        SharedPreferences passwdPreferences = getSharedPreferences("passwd,",MODE_PRIVATE);
+                ("usuario", MODE_PRIVATE);
+        SharedPreferences passwdPreferences = getSharedPreferences("passwd,", MODE_PRIVATE);
 
-        String usuario = namePreferences.getString("usuario","No hay usuarios guardados");
-        String passwd = passwdPreferences.getString("passwd","No hay contraseñas guardadas");
+        String usuario = namePreferences.getString("usuario", "No hay usuarios guardados");
+        String passwd = passwdPreferences.getString("passwd", "No hay contraseñas guardadas");
 
         tiet_usario.setText(usuario);
         tiet_passwd.setText(passwd);

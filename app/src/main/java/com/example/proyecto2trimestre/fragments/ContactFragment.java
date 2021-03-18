@@ -139,7 +139,7 @@ public class ContactFragment extends Fragment {
         bt_enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String []nombre = {tiet_nombre.getText().toString()};
+                String nombre = tiet_nombre.getText().toString();
                 String telefono = tiet_telefono.getText().toString();
                 String correo = tiet_correo.getText().toString();
                 String mensaje = tiet_mensaje.getText().toString();
