@@ -22,6 +22,7 @@ import com.example.proyecto2trimestre.fragments.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Home extends AppCompatActivity {
+    int contador = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +44,7 @@ public class Home extends AppCompatActivity {
 
         mBottomNavigation.setSelectedItemId(R.id.menu_home);
     }
-
-
-
+    
     private void navigateToFragment(int itemId) {
 
         Fragment fragment;
@@ -76,7 +75,31 @@ public class Home extends AppCompatActivity {
         transaction.commit();
         //setTitle(title);
     }
+    //captura el boton de atras
+    @Override
+    public void onBackPressed() {
 
+        contador ++;
 
+        if(contador == 1){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Deseas salir de la aplicacion?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_HOME);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            })
+                    .setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+        }
+        super.onBackPressed();
+    }
 
 }
