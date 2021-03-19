@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
     TextInputEditText tiet_passwd;
     TextView tv_rememberPasswd;
     TextView tv_helpText;
+    int contador;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
+        contador = 0;
 
         bt_login = findViewById(R.id.bt_login);
         bt_call = findViewById(R.id.bt_llamanos);
@@ -40,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
         String usaurio = tiet_usario.getText().toString();
         String passwd = tiet_passwd.getText().toString();
+
+
+
+
 
 
         SharedPreferences namePreferences = getSharedPreferences
@@ -101,6 +107,56 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    //captura el boton de atras
+    @Override
+    public void onBackPressed() {
+
+        contador ++;
+
+        if(contador == 1){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Deseas salir de la aplicacion?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_HOME);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            })
+                    .setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    //captura el boton de atras para preguntar si quieres salir de la aplicacion
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == event.KEYCODE_BACK){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Deseas salir de la aplicacion?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_HOME);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            })
+                    .setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     public void guardarPreferencias() {
         SharedPreferences namePreferences = getSharedPreferences
@@ -132,4 +188,9 @@ public class MainActivity extends AppCompatActivity {
         tiet_usario.setText(usuario);
         tiet_passwd.setText(passwd);
     }
+
+
+
 }
+
+

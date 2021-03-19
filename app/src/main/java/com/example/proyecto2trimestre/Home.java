@@ -77,26 +77,6 @@ public class Home extends AppCompatActivity {
         //setTitle(title);
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode ==event.KEYCODE_BACK){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Deseas salir de la aplicacion?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(Intent.ACTION_MAIN);
-                    intent.addCategory(Intent.CATEGORY_HOME);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }
-            })
-                    .setNegativeButton("no", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+
+
 }
